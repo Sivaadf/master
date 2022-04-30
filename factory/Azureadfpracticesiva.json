@@ -1,0 +1,9 @@
+{
+	"name": "Azureadfpracticesiva",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d691b2d3-c4d9-41b2-81f6-f98786f785d2",
+		"tenantId": "2163ff23-760c-4b35-b15c-e5a75bf6b372"
+	}
+}
