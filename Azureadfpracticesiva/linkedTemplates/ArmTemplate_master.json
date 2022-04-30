@@ -1,0 +1,77 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "Azureadfpracticesiva"
+		},
+		"AzureSqlDatabasedest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabasedest'"
+		},
+		"sqlemopdata_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlemopdata'"
+		},
+		"sqlempdata1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlempdata1'"
+		},
+		"textfiledest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'textfiledest'"
+		},
+		"textfilesource_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'textfilesource'"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "Azureadfpracticesiva_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureSqlDatabasedest_connectionString": {
+						"value": "[parameters('AzureSqlDatabasedest_connectionString')]"
+					},
+					"sqlemopdata_connectionString": {
+						"value": "[parameters('sqlemopdata_connectionString')]"
+					},
+					"sqlempdata1_connectionString": {
+						"value": "[parameters('sqlempdata1_connectionString')]"
+					},
+					"textfiledest_connectionString": {
+						"value": "[parameters('textfiledest_connectionString')]"
+					},
+					"textfilesource_connectionString": {
+						"value": "[parameters('textfilesource_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
